@@ -7,8 +7,9 @@ const repo = data_source_1.AppDataSource.getRepository(Produto_1.Produto);
 exports.ProdutoService = {
     async criar(data) {
         const produto = repo.create(data);
-        let result = await repo.save(produto);
-        console.log(result);
+        await repo.save(produto);
+        console.log(produto);
+        data_source_1.AppDataSource.destroy();
         return produto;
     },
     async listar() {

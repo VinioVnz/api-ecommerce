@@ -2,10 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const ProdutoController_1 = require("../controllers/ProdutoController");
+const authJwt_1 = require("../midleware/authJwt");
 const routes = (0, express_1.Router)();
-routes.get('/', ProdutoController_1.ProdutoController.listar);
-routes.get('/:id', ProdutoController_1.ProdutoController.buscar);
-routes.post('/', ProdutoController_1.ProdutoController.criar);
-routes.put('/:id', ProdutoController_1.ProdutoController.atualizar);
-routes.delete('/:id', ProdutoController_1.ProdutoController.deletar);
+routes.get('/', authJwt_1.authJwt, ProdutoController_1.ProdutoController.listar);
+routes.get('/:id', authJwt_1.authJwt, ProdutoController_1.ProdutoController.buscar);
+routes.post('/', authJwt_1.authJwt, ProdutoController_1.ProdutoController.criar);
+routes.put('/:id', authJwt_1.authJwt, ProdutoController_1.ProdutoController.atualizar);
+routes.delete('/:id', authJwt_1.authJwt, ProdutoController_1.ProdutoController.deletar);
 exports.default = routes;

@@ -7,10 +7,12 @@ export const ProdutoService = {
     async criar(data: Partial<Produto>): Promise<Produto> {
         const produto = repo.create(data)
         await repo.save(produto)
-        AppDataSource.destroy()
+        console.log(produto);
+
         return produto
     },
     async listar(): Promise<Produto[]> {
+        console.log(await repo.find())
         return await repo.find()
     },
     async buscarPorId(id: number): Promise<Produto | null>{
